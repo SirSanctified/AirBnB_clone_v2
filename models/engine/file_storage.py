@@ -46,8 +46,12 @@ class FileStorage:
         Args:
             obj (_type_, optional): _description_. Defaults to None.
         """
-        if obj is not None and obj in FileStorage.__objects:
-            FileStorage.__objects.pop(obj)
+        if obj is None:
+            return
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        if key in FileStorage.__objects:
+            del FileStorage.__objects[key]
+            self.save()
 
     def reload(self):
         """Loads storage dictionary from file"""
