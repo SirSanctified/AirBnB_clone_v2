@@ -32,7 +32,7 @@ class FileStorage:
         Args:
             obj (_type_, optional): _description_. Defaults to None.
         """
-        if obj in FileStorage.__objects:
+        if obj is not None and obj in FileStorage.__objects:
             FileStorage.__objects.pop(obj)
 
     def reload(self):
