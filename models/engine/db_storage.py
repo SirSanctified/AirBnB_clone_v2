@@ -19,6 +19,7 @@ database = os.getenv('HBNB_MYSQL_DB')
 host = os.getenv('HBNB_MYSQL_HOST', default='localhost')
 env = os.getenv('HBNB_ENV')
 
+
 class DBStorage:
     __classes = [State, City, User, Place, Review, Amenity]
     __engine = None
@@ -27,10 +28,12 @@ class DBStorage:
     def __init__(self):
         """Contructor for the class DBStorage"""
 
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(user, password, host, database), pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'
+                                      .format(user, password, host, database),
+                                      pool_pre_ping=True)
     if env == "test":
         Base.MetaData.drop_all()
-    
+
     def all(self, cls=None):
         """Method to return a dictionary of objects"""
         my_dict = {}
@@ -46,29 +49,30 @@ class DBStorage:
                     key = "{}.{}".format(row.__class__.__name__, row.id)
                     my_dict[key] = row
         return my_dict
-    
+
     def new(self, obj):
-        """add the object to the current database session 
+        """add the object to the current database session
 
         Args:
             obj (object): instance of any class from __classes
         """
 
         DBStorage.__session.add(obj)
-    
+
     def save(self):
-        """commit all changes of the current database session 
+        """commit all changes of the current database session
         """
         DBStorage.__session.commit()
-    
+
     def reload(self):
         """create all tables in the database
         """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
         Session = scoped_session(session_factory)
         DBStorage.__session = Session()
-    
+
     def close(self):
         """Close the database session
         """
