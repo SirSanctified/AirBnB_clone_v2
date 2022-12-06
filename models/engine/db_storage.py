@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-    """Database storage engine
-    """
+"""
+    Database storage engine
+"""
 from models.base_model import BaseModel, Base
 from models.user import User
 from models.state import State
@@ -12,11 +13,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 import os
 
-user = os.getenv(HBNB_MYSQL_USER)
-password = os.getenv(HBNB_MYSQL_PWD)
-database = os.getenv(HBNB_MYSQL_DB)
-host = os.getenv(HBNB_MYSQL_HOST, default='localhost')
-env = os.getenv(HBNB_ENV)
+user = os.getenv('HBNB_MYSQL_USER')
+password = os.getenv('HBNB_MYSQL_PWD')
+database = os.getenv('HBNB_MYSQL_DB')
+host = os.getenv('HBNB_MYSQL_HOST', default='localhost')
+env = os.getenv('HBNB_ENV')
 
 class DBStorage:
     __classes = [State, City, User, Place, Review, Amenity]
@@ -64,7 +65,7 @@ class DBStorage:
         """create all tables in the database
         """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expires_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         DBStorage.__session = Session()
     
