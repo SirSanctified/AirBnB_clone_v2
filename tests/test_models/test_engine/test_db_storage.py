@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Dec 6 15:40:09 2022
+Created on Tue Dec 6 15:43:09 2022
 @author: SirSanctified
 """
 import sys
@@ -106,7 +106,7 @@ class TestFileStorage(unittest.TestCase):
         key2 = 'State.412409120491902491209491024'
         try:
             self.assertRaises(temp_d[key2], KeyError)
-        except Exception:
+        except:
             pass
 
     def test_reload(self):
@@ -121,7 +121,7 @@ class TestFileStorage(unittest.TestCase):
         key2 = 'State.412409120491902491209491024'
         try:
             self.assertRaises(obj_d[key2], KeyError)
-        except Exception:
+        except:
             pass
 
     def test_delete_basic(self):
@@ -132,7 +132,7 @@ class TestFileStorage(unittest.TestCase):
         key2 += str(self.temp_objs[2].id)
         try:
             self.assertRaises(obj_d[key2], KeyError)
-        except Exception:
+        except:
             pass
 
     def test_new_basic(self):
@@ -150,5 +150,5 @@ class TestFileStorage(unittest.TestCase):
         try:
             self.assertRaises(storage.new('jwljfef'), TypeError)
             self.assertRaises(storage.new(None), TypeError)
-        except Exception:
+        except:
             pass
