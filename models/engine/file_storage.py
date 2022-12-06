@@ -41,7 +41,8 @@ class FileStorage:
 
     def delete(self, obj=None):
         """
-        Delete obj from __objects if it’s inside - if obj is equal to None, the method should not do anything
+        Delete obj from __objects if it’s inside - if obj is equal to None,
+        the method should not do anything
 
         Args:
             obj (_type_, optional): _description_. Defaults to None.
@@ -73,6 +74,6 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
