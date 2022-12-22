@@ -17,8 +17,8 @@ def do_pack():
     now = datetime.now().strftime("%Y%m%d%H%M%S")
     local("sudo mkdir -p ./versions")
     with lcd("versions"):
-        result = local(f"sudo tar -czvf web_static_{now}.tgz ../web_static/")
+        result = local("sudo tar -czvf web_static_{}.tgz ../web_static/".format(now))
     if result.succeeded:
-        return f"./versions/web_static_{now}.tgz"
+        return "./versions/web_static_{}.tgz".format(now)
     else:
         return None
