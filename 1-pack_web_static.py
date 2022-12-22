@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-# create a tar archive of the web_static folder
+"""
+    create a tar archive of the web_static folder
+"""
 
 from fabric.api import local, env, lcd
 from datetime import datetime
