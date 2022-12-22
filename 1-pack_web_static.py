@@ -9,6 +9,7 @@ from datetime import datetime
 env.user = 'ubuntu'
 env.hosts = ['100.25.4.131', '34.239.207.20']
 
+
 def do_pack():
     """
         Compress the web_static folder
@@ -17,7 +18,8 @@ def do_pack():
     now = datetime.now().strftime("%Y%m%d%H%M%S")
     local("sudo mkdir -p ./versions")
     with lcd("versions"):
-        result = local("sudo tar -czvf web_static_{}.tgz ../web_static/".format(now))
+        result = local("sudo tar -czvf web_static_{}.tgz ../web_static/"
+                       .format(now))
     if result.succeeded:
         return "./versions/web_static_{}.tgz".format(now)
     else:
