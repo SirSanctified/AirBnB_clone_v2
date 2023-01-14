@@ -3,7 +3,8 @@
 List cities by states
 """
 
-from models import storage, State, City
+from models import storage
+from models.state State
 from flask import Flask, render_template
 app = Flask(__name__)
 
