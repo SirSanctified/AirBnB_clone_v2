@@ -2,7 +2,8 @@
 """
 List all the states from the DBStorage engine
 """
-from models import storage, storage.all
+from models import storage
+from models.states import State
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -21,8 +22,7 @@ def teardown_storage(exception):
 def states_list():
     """Render a template displaying a list of states available in storage
     """
-    states = storage.all('State')
-    return render_template('7-states_list.html', states=states)
+    return render_template('7-states_list.html', states=storage.all(State))
 
 
 if __name__ == '__main__':
