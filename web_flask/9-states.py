@@ -22,13 +22,12 @@ def states(id=None):
     """
     states = storage.all(State).values()
     if not id:
-        return render_template('9-states.html', states=states)
+        return render_template('9-states.html', state=states)
     else:
-        state = None
-        for s in states:
-            if s.id == id:
-                state = s
-        return render_template('9-states.html', state=state)
+        for state in states:
+            if state.id == id:
+                return render_template('9-states.html', state=state)
+        return render_template('9-states.html')
 
 
 if __name__ == '__main__':

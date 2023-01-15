@@ -6,14 +6,14 @@
 </head>
 
 <body>
-    {% if states %}
+    {% if state is mapping %}
     <h1>States</h1>
     <ul>
         {% for state in states | sort(attribute="name") %}
         <li>State: {{ state.id }}: <b>{{ state.name }}</b></li>
         {% endfor %}
     </ul>
-    {% elif state %}
+    {% elif state is defined %}
     <h1>State: {{ state.name }}</h1>
     <h3>Cities</h3>
     <ul>
