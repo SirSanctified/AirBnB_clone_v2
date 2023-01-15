@@ -10,6 +10,8 @@ import os
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = "states"
+    __table_args__ = (
+        {'mysql_default_charset': 'latin1'})
     name = Column(String(128), nullable=False)
     cities = relationship("City", backref="state",
                           cascade="all, delete-orphan")

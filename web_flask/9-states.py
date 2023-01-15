@@ -15,8 +15,8 @@ def teardown_db(exception):
     storage.close()
 
 
+@app.route('/states/<id>', strict_slashes=False)
 @app.route('/states', strict_slashes=False)
-@app.route('/state/<id>', strict_slashes=False)
 def states(id=None):
     """List all states
     """
@@ -24,7 +24,10 @@ def states(id=None):
     if not id:
         return render_template('9-states.html', states=states)
     else:
-        state = states.get(id, None)
+        state = None
+        for s in states:
+            if s.id == id:
+                state = s
         return render_template('9-states.html', state=state)
 
 
