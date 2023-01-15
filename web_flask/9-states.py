@@ -16,18 +16,20 @@ def teardown_db(exception):
 
 
 @app.route('/states/<id>', strict_slashes=False)
+def state(id=None):
+    """List cities in a state"""
+    for state in storage.all(State).values():
+        if state.id == id:
+            return render_template('9-states.html', state=state)
+    return render_template('9-states.html')
+
+
 @app.route('/states', strict_slashes=False)
-def states(id=None):
+def states():
     """List all states
     """
-    states = storage.all(State).values()
-    if not id:
-        return render_template('9-states.html', state=states)
-    else:
-        for state in states:
-            if state.id == id:
-                return render_template('9-states.html', state=state)
-        return render_template('9-states.html')   
+    states = storage.all(State)
+    return render_template('9-states.html', state=states)
 
 
 if __name__ == '__main__':

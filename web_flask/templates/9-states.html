@@ -9,7 +9,7 @@
     {% if state is mapping %}
     <h1>States</h1>
     <ul>
-        {% for s in state | sort(attribute="name") %}
+        {% for s in state.values() | sort(attribute="name") %}
         <li>State: {{ s.id }}: <b>{{ s.name }}</b></li>
         {% endfor %}
     </ul>
@@ -19,7 +19,7 @@
     <ul>
         {% for city in state.cities | sort(attribute="name") %}
         <li>City: {{ city.id }}: <b>{{ city.name }}</b></li>
-        {%endfor%}
+        {% endfor %}
     </ul>
     {% else %}
     <h1>Not found!</h1>
